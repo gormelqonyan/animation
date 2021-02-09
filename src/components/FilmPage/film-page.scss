@@ -1,0 +1,37 @@
+.film-page {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+
+  &--left-content {
+    position: sticky;
+    top: 100px;
+    margin-right: 40px;
+  }
+
+  &--slider-box {
+    display: flex;
+    align-items: center;
+  }
+
+  &--about-title {
+    font-size: 24px;
+    color: #ff6800;
+  }
+
+  &--about-text {
+    font-size: 18px;
+    color: #fff;
+    font-weight: 300;
+  }
+
+  &--slider-box-item {
+
+    &:not(:first-child) {
+      margin-left: 20px;
+    }
+  }
+}
