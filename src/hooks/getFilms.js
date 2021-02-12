@@ -5,7 +5,7 @@ const GetFilm = () => {
     const [filmsData, setFilmsData] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/items?_page=1&_limit=4")
+        fetch("http://localhost:5000/items?_page=1&_limit=30")
             .then(response => response.json())
             .then(data => {
                 setFilmsData(data)

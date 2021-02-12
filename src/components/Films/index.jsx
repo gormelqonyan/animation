@@ -1,4 +1,4 @@
-import {useContext, useState} from "react";
+import {useContext, useState, useEffect, createRef} from "react";
 import {useHistory} from "react-router-dom";
 import {motion} from "framer-motion";
 import Helmet from "react-helmet";
@@ -10,11 +10,27 @@ import "./films.scss";
 const Films = () => {
     const history = useHistory();
     const [selectedId, setSelectedId] = useState(null);
-    const {activeId, filmsData, loading} = useContext(FilmContext)
+    const {activeId, filmsData, loading, elRefs, setElRefs} = useContext(FilmContext)
+
+    useEffect(() => {
+        setElRefs(elRefs => (
+            Array(filmsData.length).fill().map((_, i) => elRefs[i] || createRef())
+        ));
+
+    }, [filmsData]);
+
+    useEffect(() => {
+        const index = filmsData.findIndex((film) => film.id === activeId);
+        elRefs[index]?.current?.scrollIntoView(false)
+    }, [elRefs])
+
+
 
     if (loading) {
         return <div>Loading...</div>
     }
+
+
 
     return (
         <>
@@ -25,7 +41,8 @@ const Films = () => {
                 exit={false}
                 initial={{position: "absolute"}}
                 animate={{position: "static"}}
-                className={"films"}>
+                className={"films"}
+            >
                 <motion.div
                     className="films--count"
                     initial={{opacity: 0}}
@@ -45,6 +62,7 @@ const Films = () => {
                                     selectedId={selectedId}
                                     activeId={activeId}
                                     filmData={filmData}
+                                    ref={elRefs[index]}
                                     onClick={() => {
                                         setSelectedId(index)
                                         history.push(`/${id}`)

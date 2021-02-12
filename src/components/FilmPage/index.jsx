@@ -10,13 +10,46 @@ const FilmPage = () => {
     const params = useParams()
     const {setActiveId, filmsData, loading} = useContext(FilmContext)
     useEffect(() => {
-        setActiveId(params.id)
+        setActiveId(params.id);
     }, [params.id, setActiveId]);
 
     const selectedFilm = filmsData.find(({id}) => params.id === id );
 
     if (loading) {
         return <div>Loading...</div>
+    }
+
+    const filmPageVariants = {
+        fixed: {
+            position: "fixed",
+            top: 147,
+            left: 40,
+            right: 40,
+        },
+        static: {
+            position: "static",
+            top: 147,
+            left: 0,
+            right: 0,
+            transition: {delay: 0.5, duration: 0}
+        },
+
+        staticLeftContent: {
+            position: "static",
+            top: 0,
+            left: 0,
+        },
+        exitStaticLeftContent: {
+            position: "static",
+            top: 0,
+            left: 0,
+            transition: {delay: 0, duration: 0}
+        },
+        sticky: {
+            position: "sticky",
+            top: 147,
+            transition: {delay: 0.5, duration: 0}
+        }
     }
 
     return (
@@ -26,9 +59,17 @@ const FilmPage = () => {
             </Helmet>
             <motion.div
                 className={"film-page"}
+                initial={"fixed"}
+                animate={"static"}
+                exit={"fixed"}
+                variants={filmPageVariants}
                 layout
             >
                 <motion.div
+                    initial={"staticLeftContent"}
+                    animate={"sticky"}
+                    exit={"exitStaticLeftContent"}
+                    variants={filmPageVariants}
                     className={"film film-page--left-content"}
                 >
                     <motion.div
@@ -45,7 +86,9 @@ const FilmPage = () => {
                     </motion.p>
                 </motion.div>
 
-                <motion.div>
+                <motion.div
+                    className={"film-page--right-content"}
+                >
                     <div className={"film-page--slider-box"}>
                         {
                             new Array(4).fill("").map((_, index, arr) => {
