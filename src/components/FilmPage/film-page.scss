@@ -2,9 +2,14 @@
   display: flex;
   align-items: flex-start;
   box-sizing: border-box;
+  top: 147px;
+  left: 40px;
+  right: 40px;
 
   &--left-content {
     margin-right: 40px;
+    top: 147px;
+    left: 0
   }
 
   &--slider-box {

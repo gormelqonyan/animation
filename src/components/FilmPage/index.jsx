@@ -22,32 +22,17 @@ const FilmPage = () => {
     const filmPageVariants = {
         fixed: {
             position: "fixed",
-            top: 147,
-            left: 40,
-            right: 40,
         },
         static: {
             position: "static",
-            top: 147,
-            left: 0,
-            right: 0,
             transition: {delay: 0.7, duration: 0}
         },
 
         staticLeftContent: {
             position: "static",
-            top: 147,
-            left: 0,
-        },
-        exitStaticLeftContent: {
-            position: "static",
-            top: 147,
-            left: 0,
-            transition: {delay: 0, duration: 20}
         },
         sticky: {
             position: "sticky",
-            top: 147,
             transition: {delay: 0.7, duration: 0}
         }
     }
