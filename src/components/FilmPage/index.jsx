@@ -31,24 +31,24 @@ const FilmPage = () => {
             top: 147,
             left: 0,
             right: 0,
-            transition: {delay: 0.5, duration: 0}
+            transition: {delay: 0.7, duration: 0}
         },
 
         staticLeftContent: {
             position: "static",
-            top: 0,
+            top: 147,
             left: 0,
         },
         exitStaticLeftContent: {
             position: "static",
-            top: 0,
+            top: 147,
             left: 0,
-            transition: {delay: 0, duration: 0}
+            transition: {delay: 0, duration: 20}
         },
         sticky: {
             position: "sticky",
             top: 147,
-            transition: {delay: 0.5, duration: 0}
+            transition: {delay: 0.7, duration: 0}
         }
     }
 
@@ -68,7 +68,7 @@ const FilmPage = () => {
                 <motion.div
                     initial={"staticLeftContent"}
                     animate={"sticky"}
-                    exit={"exitStaticLeftContent"}
+                    exit={false}
                     variants={filmPageVariants}
                     className={"film film-page--left-content"}
                 >

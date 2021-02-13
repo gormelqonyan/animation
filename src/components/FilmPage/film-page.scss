@@ -25,6 +25,10 @@
 
   &--slider-box-item {
 
+    min-width: 200px;
+    width: 14.641288433382138vw;
+    max-width: 500px;
+
     &:not(:first-child) {
       margin-left: 20px;
     }
